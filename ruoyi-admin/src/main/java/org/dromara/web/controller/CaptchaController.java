@@ -26,6 +26,7 @@ import org.dromara.common.web.core.WaveAndCircleCaptcha;
 import org.dromara.sms4j.api.SmsBlend;
 import org.dromara.sms4j.api.entity.SmsResponse;
 import org.dromara.sms4j.core.factory.SmsFactory;
+import org.dromara.web.service.AuthGrantPolicy;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
@@ -51,6 +52,7 @@ public class CaptchaController {
 
     private final CaptchaProperties captchaProperties;
     private final MailProperties mailProperties;
+    private final AuthGrantPolicy grantPolicy;
 
     /**
      * 发送短信验证码。
@@ -58,12 +60,25 @@ public class CaptchaController {
      * @param phoneNumber 用户手机号
      * @return 操作结果
      */
-    @RateLimiter(key = "#phoneNumber", time = 60, count = 1)
     @GetMapping("/resource/sms/code")
     public R<Void> smsCode(@NotBlank(message = "{user.phonenumber.not.blank}") String phoneNumber) {
+        if (!grantPolicy.isEnabled("sms")) {
+            return R.fail("当前系统没有开启短信登录功能！");
+        }
         if (!RegexValidator.isMobile(phoneNumber)) {
             return R.fail("请输入正确的手机号！");
         }
+        return SpringUtils.getAopProxy(this).smsCodeImpl(phoneNumber);
+    }
+
+    /**
+     * 已启用短信登录后发送验证码并缓存结果。
+     *
+     * @param phoneNumber 用户手机号
+     * @return 操作结果
+     */
+    @RateLimiter(key = "#phoneNumber", time = 60, count = 1)
+    public R<Void> smsCodeImpl(String phoneNumber) {
         String key = GlobalConstants.CAPTCHA_CODE_KEY + phoneNumber;
         String code = RandomUtil.randomNumbers(4);
         // 验证码模板id 自行处理 (查数据库或写死均可)
@@ -89,6 +104,9 @@ public class CaptchaController {
      */
     @GetMapping("/resource/email/code")
     public R<Void> emailCode(@NotBlank(message = "{user.email.not.blank}") String email) {
+        if (!grantPolicy.isEnabled("email")) {
+            return R.fail("当前系统没有开启邮箱登录功能！");
+        }
         if (!mailProperties.getEnabled()) {
             return R.fail("当前系统没有开启邮箱功能！");
         }

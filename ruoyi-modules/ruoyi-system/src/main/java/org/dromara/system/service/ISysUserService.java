@@ -148,14 +148,6 @@ public interface ISysUserService {
     int insertUser(SysUserBo user);
 
     /**
-     * 注册用户信息
-     *
-     * @param user 用户信息
-     * @return 是否注册成功
-     */
-    boolean registerUser(SysUserBo user);
-
-    /**
      * 修改用户信息
      *
      * @param user 用户信息

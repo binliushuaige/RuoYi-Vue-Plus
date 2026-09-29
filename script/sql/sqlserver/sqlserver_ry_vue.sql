@@ -1,215 +1,3 @@
-create table sys_social
-(
-    id                 bigint            NOT NULL,
-    user_id            bigint            NOT NULL,
-    auth_id            nvarchar(255)     NOT NULL,
-    source             nvarchar(255)     NOT NULL,
-    open_id            nvarchar(255)     NULL,
-    user_name          nvarchar(30)      NOT NULL,
-    nick_name          nvarchar(30)      DEFAULT ('')   NULL,
-    email              nvarchar(255)     DEFAULT ('')   NULL,
-    avatar             nvarchar(500)     DEFAULT ('')   NULL,
-    access_token       nvarchar(2000)    NOT NULL,
-    expire_in          bigint            NULL,
-    refresh_token      nvarchar(2000)    NULL,
-    access_code        nvarchar(255)     NULL,
-    union_id           nvarchar(255)     NULL,
-    scope              nvarchar(255)     NULL,
-    token_type         nvarchar(255)     NULL,
-    id_token           nvarchar(2000)    NULL,
-    mac_algorithm      nvarchar(255)     NULL,
-    mac_key            nvarchar(255)     NULL,
-    code               nvarchar(255)     NULL,
-    oauth_token        nvarchar(255)     NULL,
-    oauth_token_secret nvarchar(255)     NULL,
-    create_dept        bigint,
-    create_by          bigint,
-    create_time        datetime2(7),
-    update_by          bigint,
-    update_time        datetime2(7),
-    del_flag           nchar             DEFAULT ('0')   NULL,
-    CONSTRAINT PK__sys_social__B21E8F2427725F8A PRIMARY KEY CLUSTERED (id)
-    WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
-    ON [PRIMARY]
-)
-ON [PRIMARY]
-GO
-
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'id' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'id'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'用户ID' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'user_id'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'平台+平台唯一id' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'auth_id'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'用户来源' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'source'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'平台编号唯一id' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'open_id'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'登录账号' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'user_name'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'用户昵称' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'nick_name'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'用户邮箱' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'email'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'头像地址' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'avatar'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'用户的授权令牌' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'access_token'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'用户的授权令牌的有效期，部分平台可能没有' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'expire_in'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'刷新令牌，部分平台可能没有' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'refresh_token'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'平台的授权信息，部分平台可能没有' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'access_code'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'用户的 unionid' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'union_id'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'授予的权限，部分平台可能没有' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'scope'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'个别平台的授权信息，部分平台可能没有' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'token_type'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'id token，部分平台可能没有' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'id_token'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'小米平台用户的附带属性，部分平台可能没有' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'mac_algorithm'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'小米平台用户的附带属性，部分平台可能没有' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'mac_key'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'用户的授权code，部分平台可能没有' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'code'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'Twitter平台用户的附带属性，部分平台可能没有' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'oauth_token'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'Twitter平台用户的附带属性，部分平台可能没有' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'oauth_token_secret'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'删除标志（0代表存在 1代表删除）' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'del_flag'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'创建部门' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'create_dept'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'创建者' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'create_by'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'创建时间' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'create_time'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'更新者' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'update_by'
-GO
-EXEC sys.sp_addextendedproperty
-    'MS_Description', N'更新时间' ,
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social',
-    'COLUMN', N'update_time'
-GO
-EXEC sp_addextendedproperty
-    'MS_Description', N'社会化关系表',
-    'SCHEMA', N'dbo',
-    'TABLE', N'sys_social'
-GO
-
-
 CREATE TABLE gen_table
 (
     table_id          bigint                         NOT NULL,
@@ -642,8 +430,6 @@ GO
 
 INSERT sys_config VALUES (1761700000000000001, N'用户管理-账号初始密码', N'sys.user.initPassword', N'123456', N'Y', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'初始化密码 123456')
 GO
-INSERT sys_config VALUES (1761700000000000002, N'账号自助-是否开启用户注册功能', N'sys.account.registerUser', N'false', N'Y', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'是否开启注册用户功能（true开启，false关闭）')
-GO
 INSERT sys_config VALUES (1761700000000000003, N'OSS预览列表资源开关', N'sys.oss.previewListResource', N'true', N'Y', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'true:开启, false:关闭');
 GO
 
@@ -978,9 +764,7 @@ INSERT sys_dict_data VALUES (1761600000000000031, 0, N'短信认证', N'sms', N'
 GO
 INSERT sys_dict_data VALUES (1761600000000000032, 0, N'邮件认证', N'email', N'sys_grant_type', N'', N'default', N'N', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'邮件认证')
 GO
-INSERT sys_dict_data VALUES (1761600000000000033, 0, N'小程序认证', N'xcx', N'sys_grant_type', N'', N'default', N'N', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'小程序认证')
 GO
-INSERT sys_dict_data VALUES (1761600000000000034, 0, N'三方登录认证', N'social', N'sys_grant_type', N'', N'default', N'N', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'三方登录认证')
 GO
 INSERT sys_dict_data VALUES (1761600000000000035, 0, N'PC', N'pc', N'sys_device_type', N'', N'default', N'N', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'PC')
 GO
@@ -988,7 +772,6 @@ INSERT sys_dict_data VALUES (1761600000000000036, 0, N'安卓', N'android', N'sy
 GO
 INSERT sys_dict_data VALUES (1761600000000000037, 0, N'iOS', N'ios', N'sys_device_type', N'', N'default', N'N', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'iOS')
 GO
-INSERT sys_dict_data VALUES (1761600000000000038, 0, N'小程序', N'xcx', N'sys_device_type', N'', N'default', N'N', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'小程序')
 GO
 
 CREATE TABLE sys_dict_type
@@ -3182,9 +2965,9 @@ EXEC sp_addextendedproperty
     'TABLE', N'sys_client'
 GO
 
-INSERT INTO sys_client VALUES (1762000000000000001, N'e5cd7e4891bf95d1d19206ce24a7b32e', N'pc', N'pc123', N'password,social', N'pc', N'', N'', 1800, 604800, N'0', N'0', 1761000000000000103, 1761100000000000001, getdate(), 1761100000000000001, getdate());
+INSERT INTO sys_client VALUES (1762000000000000001, N'e5cd7e4891bf95d1d19206ce24a7b32e', N'pc', N'pc123', N'password', N'pc', N'', N'', 1800, 604800, N'0', N'0', 1761000000000000103, 1761100000000000001, getdate(), 1761100000000000001, getdate());
 GO
-INSERT INTO sys_client VALUES (1762000000000000002, N'428a8310cd442757ae699df5d894f051', N'app', N'app123', N'password,sms,social', N'android', N'/app/**', N'', 1800, 604800, N'0', N'0', 1761000000000000103, 1761100000000000001, getdate(), 1761100000000000001, getdate());
+INSERT INTO sys_client VALUES (1762000000000000002, N'428a8310cd442757ae699df5d894f051', N'app', N'app123', N'password', N'android', N'/app/**', N'', 1800, 604800, N'0', N'0', 1761000000000000103, 1761100000000000001, getdate(), 1761100000000000001, getdate());
 GO
 
 CREATE TABLE test_demo

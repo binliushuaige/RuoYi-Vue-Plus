@@ -50,12 +50,6 @@
             <artifactId>ruoyi-common-doc</artifactId>
         </dependency>
 
-        <!-- 授权认证 -->
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-social</artifactId>
-        </dependency>
-
         <!-- 邮件服务 -->
         <dependency>
             <groupId>org.dromara</groupId>

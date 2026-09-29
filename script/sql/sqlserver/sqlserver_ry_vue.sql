@@ -1187,8 +1187,6 @@ GO
 insert into sys_menu values(1761400000000000133, N'文件配置管理', 1761400000000000001, 10, N'oss-config/index', N'system/oss/config', N'', N'N', N'N', N'C', N'1', N'0', N'system:ossConfig:list', N'#', N'/system/oss', N'', 1761000000000000103, 1761100000000000001, getdate(), null, null, N'');
 GO
 
-insert into sys_menu values(1761400000000000117, N'Admin监控', 1761400000000000002, 5, N'Admin', N'monitor/admin/index', N'', N'N', N'Y', N'C', N'0', N'0', N'monitor:admin:list', N'dashboard', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'Admin监控菜单');
-GO
 insert into sys_menu values(1761400000000000118, N'文件管理', 1761400000000000001, 10, N'oss', N'system/oss/index', N'', N'N', N'Y', N'C', '0', N'0', N'system:oss:list', N'upload', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'文件管理菜单');
 GO
 insert into sys_menu values(1761400000000000500, N'操作日志', 1761400000000000108, 1, N'operlog', N'monitor/operlog/index', N'', N'N', N'Y', N'C', N'0', N'0', N'monitor:operlog:list', N'form', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'操作日志菜单');
@@ -1321,9 +1319,6 @@ insert into sys_menu values(1761400000000001064, N'客户端管理删除', 17614
 GO
 insert into sys_menu values(1761400000000001065, N'客户端管理导出', 1761400000000000123, 5, N'#', N'', N'', N'N', N'Y', N'F', N'0', N'0', N'system:client:export', N'#', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'');
 GO
--- 测试菜单
-
-
 CREATE TABLE sys_notice
 (
     notice_id      bigint                     NOT NULL,

@@ -1,6 +1,19 @@
 --- # 临时文件存储位置 避免临时文件被系统清理报错
 spring.servlet.multipart.location: /ruoyi/server/temp
 
+--- # 生产环境不提供接口文档
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+
+--- # 健康检查只返回状态；Actuator 仍使用现有 Basic Auth
+management:
+  endpoint:
+    health:
+      show-details: never
+
 --- # 监控中心配置
 spring.boot.admin.client:
   # 增加客户端开关

@@ -86,12 +86,6 @@
             <artifactId>ruoyi-ai</artifactId>
         </dependency>
 
-        <!--  demo模块  -->
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-demo</artifactId>
-        </dependency>
-
         <!--  工作流模块  -->
         <dependency>
             <groupId>org.dromara</groupId>

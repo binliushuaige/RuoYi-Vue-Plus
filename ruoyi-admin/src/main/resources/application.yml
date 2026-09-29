@@ -196,7 +196,6 @@ xss:
   # 排除链接
   excludeUrls:
     - /system/notice
-    - /warm-flow/save-json
 
 --- # 分布式锁 lock4j 全局配置
 lock4j:
@@ -237,10 +236,10 @@ message:
 
 --- # warm-flow工作流配置
 warm-flow:
-  # 是否开启工作流，默认true
-  enabled: true
-  # 是否开启设计器ui
-  ui: true
+  # 工作流按需启用
+  enabled: false
+  # 设计器只随工作流模块启用
+  ui: false
   # 是否显示流程图顶部文字
   top-text-show: true
   # 是否渲染节点悬浮提示，默认true
@@ -250,8 +249,8 @@ warm-flow:
 
 --- # LiteFlow 业务规则编排
 liteflow:
-  # 跟随工作流模块开关，避免禁用工作流时仍加载任务办理链
-  enable: ${warm-flow.enabled:true}
+  # 规则编排按需启用
+  enable: false
   metrics:
     # 临时修复：LiteFlow 2.16.2.1 的 Actuator 端点与 Spring Boot 4.1 参数名校验不兼容
     # 待 LiteFlow 修复该问题后恢复为 ${liteflow.enable:true}

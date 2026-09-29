@@ -56,12 +56,6 @@
             <artifactId>ruoyi-common-mail</artifactId>
         </dependency>
 
-        <!-- mcp模块 -->
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-mcp</artifactId>
-        </dependency>
-
         <!-- api模块 -->
         <dependency>
             <groupId>org.dromara</groupId>
@@ -72,30 +66,6 @@
         <dependency>
             <groupId>org.dromara</groupId>
             <artifactId>ruoyi-system</artifactId>
-        </dependency>
-
-        <!-- 调度任务模块 -->
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-job</artifactId>
-        </dependency>
-
-        <!-- AI业务模块 -->
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-ai</artifactId>
-        </dependency>
-
-        <!--  demo模块  -->
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-demo</artifactId>
-        </dependency>
-
-        <!--  工作流模块  -->
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-workflow</artifactId>
         </dependency>
 
         <!-- Spring Boot Admin 客户端 -->
@@ -130,10 +100,6 @@
                     <artifactId>ruoyi-gen</artifactId>
                 </dependency>
             </dependencies>
-            <activation>
-                <!-- 默认激活 -->
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
     </profiles>
 

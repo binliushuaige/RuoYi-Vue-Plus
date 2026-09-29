@@ -311,20 +311,6 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
     }
 
     /**
-     * 注册用户信息
-     *
-     * @param user 用户信息
-     * @return 结果
-     */
-    @Override
-    public boolean registerUser(SysUserBo user) {
-        user.setCreateBy(0L);
-        user.setUpdateBy(0L);
-        SysUser sysUser = MapstructUtils.convert(user, SysUser.class);
-        return userMapper.insert(sysUser) > 0;
-    }
-
-    /**
      * 修改保存用户信息
      *
      * @param user 用户信息

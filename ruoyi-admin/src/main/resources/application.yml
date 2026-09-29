@@ -349,8 +349,8 @@ easy-es:
 --- # MCP 服务端配置
 spring.ai.mcp:
   server:
-    # 与 ruoyi-admin 共用端口，默认端点为 /mcp
-    enabled: true
+    # 显式接入并完成鉴权配置后才启用
+    enabled: false
     protocol: STREAMABLE
     name: ${spring.application.name}
     version: ${project.version}

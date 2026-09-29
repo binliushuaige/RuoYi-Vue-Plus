@@ -56,12 +56,6 @@
             <artifactId>ruoyi-common-mail</artifactId>
         </dependency>
 
-        <!-- mcp模块 -->
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-mcp</artifactId>
-        </dependency>
-
         <!-- api模块 -->
         <dependency>
             <groupId>org.dromara</groupId>
@@ -106,10 +100,6 @@
                     <artifactId>ruoyi-gen</artifactId>
                 </dependency>
             </dependencies>
-            <activation>
-                <!-- 默认激活 -->
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
     </profiles>
 

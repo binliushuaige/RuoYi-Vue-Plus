@@ -1178,11 +1178,7 @@ insert into sys_menu values(1761400000000000109, N'在线用户', 17614000000000
 GO
 insert into sys_menu values(1761400000000000113, N'缓存监控', 1761400000000000002, 5, N'cache', N'monitor/cache/index', N'', N'N', N'Y', N'C', N'0', N'0', N'monitor:cache:list', N'redis', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'缓存监控菜单');
 GO
-insert into sys_menu values(1761400000000000115, N'代码生成', 1761400000000000003, 2, N'gen', N'tool/gen/index', N'', N'N', N'Y', N'C', N'0', N'0', N'tool:gen:list', N'code', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'代码生成菜单');
-GO
 insert into sys_menu values(1761400000000000123, N'客户端管理', 1761400000000000001, 11, N'client', N'system/client/index', N'', N'N', N'Y', N'C', N'0', N'0', N'system:client:list', N'international', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'客户端管理菜单');
-GO
-insert into sys_menu values(1761400000000000116, N'修改生成配置', 1761400000000000003, 2, N'gen-edit/index/:tableId', N'tool/gen/editTable', N'', N'N', N'N', N'C', N'1', N'0', N'tool:gen:edit', N'#', N'/tool/gen', N'', 1761000000000000103, 1761100000000000001, getdate(), null, null, N'');
 GO
 insert into sys_menu values(1761400000000000130, N'分配用户', 1761400000000000001, 2, N'role-auth/user/:roleId', N'system/role/authUser', N'', N'N', N'N', N'C', N'1', N'0', N'system:role:edit', N'#', N'/system/role', N'', 1761000000000000103, 1761100000000000001, getdate(), null, null, N'');
 GO
@@ -1296,18 +1292,6 @@ GO
 insert into sys_menu values(1761400000000001047, N'批量强退', 1761400000000000109, 2, N'#', N'', N'', N'N', N'Y', N'F', N'0', N'0', N'monitor:online:batchLogout', N'#', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'');
 GO
 insert into sys_menu values(1761400000000001048, N'单条强退', 1761400000000000109, 3, N'#', N'', N'', N'N', N'Y', N'F', N'0', N'0', N'monitor:online:forceLogout', N'#', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'');
-GO
-insert into sys_menu values(1761400000000001055, N'生成查询', 1761400000000000115, 1, N'#', N'', N'', N'N', N'Y', N'F', N'0', N'0', N'tool:gen:query', N'#', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'');
-GO
-insert into sys_menu values(1761400000000001056, N'生成修改', 1761400000000000115, 2, N'#', N'', N'', N'N', N'Y', N'F', N'0', N'0', N'tool:gen:edit', N'#', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'');
-GO
-insert into sys_menu values(1761400000000001057, N'生成删除', 1761400000000000115, 3, N'#', N'', N'', N'N', N'Y', N'F', N'0', N'0', N'tool:gen:remove', N'#', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'');
-GO
-insert into sys_menu values(1761400000000001058, N'导入代码', 1761400000000000115, 2, N'#', N'', N'', N'N', N'Y', N'F', N'0', N'0', N'tool:gen:import', N'#', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'');
-GO
-insert into sys_menu values(1761400000000001059, N'预览代码', 1761400000000000115, 4, N'#', N'', N'', N'N', N'Y', N'F', N'0', N'0', N'tool:gen:preview', N'#', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'');
-GO
-insert into sys_menu values(1761400000000001060, N'生成代码', 1761400000000000115, 5, N'#', N'', N'', N'N', N'Y', N'F', N'0', N'0', N'tool:gen:code', N'#', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'');
 GO
 -- oss相关按钮
 insert into sys_menu values(1761400000000001600, N'文件查询', 1761400000000000118, 1, N'#', N'', N'', N'N', N'Y', N'F', N'0', N'0', N'system:oss:query', N'#', N'', N'', 1761000000000000103, 1761100000000000001, getdate(), NULL, NULL, N'');

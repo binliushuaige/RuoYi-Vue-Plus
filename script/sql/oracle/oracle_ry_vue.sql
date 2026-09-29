@@ -308,7 +308,6 @@ insert into sys_menu values(1761400000000000118, '文件管理', 176140000000000
 -- snail-job server控制台
 insert into sys_menu values(1761400000000000120, '任务调度中心', 1761400000000000002, 5, 'snailjob', 'monitor/snailjob/index', '', 'N', 'Y', 'C', '0', '0', 'monitor:snailjob:list', 'job', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, 'snailjob控制台菜单');
 -- snail-ai server控制台
-insert into sys_menu values(1761400000000000121, 'AI控制台', 1761400000000000002, 7, 'snailai', 'monitor/snailai/index', '', 'N', 'Y', 'C', '0', '0', 'monitor:snailai:list', 'checkbox', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, 'AI控制台菜单');
 
 -- 三级菜单
 insert into sys_menu values(1761400000000000500, '操作日志', 1761400000000000108, 1, 'operlog', 'monitor/operlog/index', '', 'N', 'Y', 'C', '0', '0', 'monitor:operlog:list', 'form', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '操作日志菜单');

@@ -41,6 +41,10 @@ user:
     # 密码锁定时间（默认10分钟）
     lockTime: 10
 
+# 服务端允许的登录方式；短信和邮箱须显式启用
+auth:
+  enabled-grant-types: [password]
+
 # Spring配置
 spring:
   application:
@@ -107,9 +111,6 @@ security:
     - /error
     - /*/api-docs
     - /*/api-docs/**
-    - /warm-flow-ui/config
-    - /snail-chat/**
-    - /api/snail/chat/**
 
 # MyBatisPlus配置
 # https://baomidou.com/config/
@@ -174,16 +175,10 @@ springdoc:
       url: https://gitee.com/dromara/RuoYi-Vue-Plus
   #这里定义了两个分组，可定义多个，也可以不定义
   group-configs:
-    - group: 1.演示模块
-      packages-to-scan: org.dromara.demo
-    - group: 2.通用模块
+    - group: 1.通用模块
       packages-to-scan: org.dromara.web
-    - group: 3.系统模块
+    - group: 2.系统模块
       packages-to-scan: org.dromara.system
-    - group: 4.代码生成模块
-      packages-to-scan: org.dromara.gen
-    - group: 5.工作流模块
-      packages-to-scan: org.dromara.workflow
 
 # 防止XSS攻击
 xss:
@@ -192,7 +187,6 @@ xss:
   # 排除链接
   excludeUrls:
     - /system/notice
-    - /warm-flow/save-json
 
 --- # 分布式锁 lock4j 全局配置
 lock4j:
@@ -206,7 +200,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: health,info
   endpoint:
     health:
       show-details: ALWAYS
@@ -233,10 +227,10 @@ message:
 
 --- # warm-flow工作流配置
 warm-flow:
-  # 是否开启工作流，默认true
-  enabled: true
-  # 是否开启设计器ui
-  ui: true
+  # 工作流按需启用
+  enabled: false
+  # 设计器只随工作流模块启用
+  ui: false
   # 是否显示流程图顶部文字
   top-text-show: true
   # 是否渲染节点悬浮提示，默认true
@@ -246,8 +240,8 @@ warm-flow:
 
 --- # LiteFlow 业务规则编排
 liteflow:
-  # 跟随工作流模块开关，避免禁用工作流时仍加载任务办理链
-  enable: ${warm-flow.enabled:true}
+  # 规则编排按需启用
+  enable: false
   metrics:
     # 临时修复：LiteFlow 2.16.2.1 的 Actuator 端点与 Spring Boot 4.1 参数名校验不兼容
     # 待 LiteFlow 修复该问题后恢复为 ${liteflow.enable:true}
@@ -346,8 +340,8 @@ easy-es:
 --- # MCP 服务端配置
 spring.ai.mcp:
   server:
-    # 与 ruoyi-admin 共用端口，默认端点为 /mcp
-    enabled: true
+    # 显式接入并完成鉴权配置后才启用
+    enabled: false
     protocol: STREAMABLE
     name: ${spring.application.name}
     version: ${project.version}

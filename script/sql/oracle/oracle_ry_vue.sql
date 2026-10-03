@@ -1,71 +1,4 @@
 -- ----------------------------
--- 第三方平台授权表
--- ----------------------------
-create table sys_social
-(
-    id                 number(20)        not null,
-    user_id            number(20)        not null,
-    auth_id            varchar2(255)     not null,
-    source             varchar2(255)     not null,
-    open_id            varchar2(255)     default null,
-    user_name          varchar2(30)      not null,
-    nick_name          varchar2(30)      default '',
-    email              varchar2(255)     default '',
-    avatar             varchar2(500)     default '',
-    access_token       varchar2(2000)    not null,
-    expire_in          number(20)        default null,
-    refresh_token      varchar2(2000)    default null,
-    access_code        varchar2(255)     default null,
-    union_id           varchar2(255)     default null,
-    scope              varchar2(255)     default null,
-    token_type         varchar2(255)     default null,
-    id_token           varchar2(2000)    default null,
-    mac_algorithm      varchar2(255)     default null,
-    mac_key            varchar2(255)     default null,
-    code               varchar2(255)     default null,
-    oauth_token        varchar2(255)     default null,
-    oauth_token_secret varchar2(255)     default null,
-    create_dept        number(20),
-    create_by          number(20),
-    create_time        date,
-    update_by          number(20),
-    update_time        date,
-    del_flag           char(1)          default '0'
-);
-
-alter table sys_social add constraint pk_sys_social primary key (id);
-
-comment on table   sys_social                   is '社会化关系表';
-comment on column  sys_social.id                is '主键';
-comment on column  sys_social.user_id           is '用户ID';
-comment on column  sys_social.auth_id           is '平台+平台唯一id';
-comment on column  sys_social.source            is '用户来源';
-comment on column  sys_social.open_id           is '平台编号唯一id';
-comment on column  sys_social.user_name         is '登录账号';
-comment on column  sys_social.nick_name         is '用户昵称';
-comment on column  sys_social.email             is '用户邮箱';
-comment on column  sys_social.avatar            is '头像地址';
-comment on column  sys_social.access_token      is '用户的授权令牌';
-comment on column  sys_social.expire_in         is '用户的授权令牌的有效期，部分平台可能没有';
-comment on column  sys_social.refresh_token     is '刷新令牌，部分平台可能没有';
-comment on column  sys_social.access_code       is '平台的授权信息，部分平台可能没有';
-comment on column  sys_social.union_id          is '用户的 unionid';
-comment on column  sys_social.scope             is '授予的权限，部分平台可能没有';
-comment on column  sys_social.token_type        is '个别平台的授权信息，部分平台可能没有';
-comment on column  sys_social.id_token          is 'id token，部分平台可能没有';
-comment on column  sys_social.mac_algorithm     is '小米平台用户的附带属性，部分平台可能没有';
-comment on column  sys_social.mac_key           is '小米平台用户的附带属性，部分平台可能没有';
-comment on column  sys_social.code              is '用户的授权code，部分平台可能没有';
-comment on column  sys_social.oauth_token       is 'Twitter平台用户的附带属性，部分平台可能没有';
-comment on column  sys_social.oauth_token_secret is 'Twitter平台用户的附带属性，部分平台可能没有';
-comment on column  sys_social.create_dept       is '创建部门';
-comment on column  sys_social.create_by         is '创建者';
-comment on column  sys_social.create_time       is '创建时间';
-comment on column  sys_social.update_by         is '更新者';
-comment on column  sys_social.update_time       is '更新时间';
-comment on column  sys_social.del_flag          is '删除标志（0代表存在 1代表删除）';
-
--- ----------------------------
 -- 1、部门表
 -- ----------------------------
 create table sys_dept (
@@ -347,8 +280,6 @@ comment on column sys_menu.remark       is '备注';
 insert into sys_menu values(1761400000000000001, '系统管理', 0, 1, 'system', null, '', 'N', 'Y', 'M', '0', '0', '', 'system', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '系统管理目录');
 insert into sys_menu values(1761400000000000002, '系统监控', 0, 3, 'monitor', null, '', 'N', 'Y', 'M', '0', '0', '', 'monitor', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '系统监控目录');
 insert into sys_menu values(1761400000000000003, '系统工具', 0, 4, 'tool', null, '', 'N', 'Y', 'M', '0', '0', '', 'tool', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '系统工具目录');
-insert into sys_menu values(1761400000000000005, '测试菜单', 0, 5, 'demo', null, '', 'N', 'Y', 'M', '0', '0', null, 'star', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000000006, 'AI会话',  0, 8, 'aichat', 'ai/chat/index', '', 'N', 'Y', 'C', '0', '0', '', 'checkbox', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, 'AI聊天菜单');
 insert into sys_menu values(1761400000000000004, 'PLUS官网', 0, 9, 'https://gitee.com/dromara/RuoYi-Vue-Plus', null, '', 'Y', 'Y', 'M', '0', '0', '', 'guide', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, 'RuoYi-Vue-Plus官网地址');
 -- 二级菜单
 insert into sys_menu values(1761400000000000100, '用户管理', 1761400000000000001, 1, 'user', 'system/user/index', '', 'N', 'Y', 'C', '0', '0', 'system:user:list', 'user', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '用户管理菜单');
@@ -362,22 +293,13 @@ insert into sys_menu values(1761400000000000107, '通知公告', 176140000000000
 insert into sys_menu values(1761400000000000108, '日志管理', 1761400000000000001, 9, 'log', '', '', 'N', 'Y', 'M', '0', '0', '', 'log', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '日志管理菜单');
 insert into sys_menu values(1761400000000000109, '在线用户', 1761400000000000002, 1, 'online', 'monitor/online/index', '', 'N', 'Y', 'C', '0', '0', 'monitor:online:list', 'online', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '在线用户菜单');
 insert into sys_menu values(1761400000000000113, '缓存监控', 1761400000000000002, 5, 'cache', 'monitor/cache/index', '', 'N', 'Y', 'C', '0', '0', 'monitor:cache:list', 'redis', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '缓存监控菜单');
-insert into sys_menu values(1761400000000000115, '代码生成', 1761400000000000003, 2, 'gen', 'tool/gen/index', '', 'N', 'Y', 'C', '0', '0', 'tool:gen:list', 'code', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '代码生成菜单');
 insert into sys_menu values(1761400000000000123, '客户端管理', 1761400000000000001, 11, 'client', 'system/client/index', '', 'N', 'Y', 'C', '0', '0', 'system:client:list', 'international', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '客户端管理菜单');
-insert into sys_menu values(1761400000000000116, '修改生成配置', 1761400000000000003, 2, 'gen-edit/index/:tableId', 'tool/gen/editTable', '', 'N', 'N', 'C', '1', '0', 'tool:gen:edit', '#', '/tool/gen', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
 insert into sys_menu values(1761400000000000130, '分配用户', 1761400000000000001, 2, 'role-auth/user/:roleId', 'system/role/authUser', '', 'N', 'N', 'C', '1', '0', 'system:role:edit', '#', '/system/role', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
 insert into sys_menu values(1761400000000000131, '分配角色', 1761400000000000001, 1, 'user-auth/role/:userId', 'system/user/authRole', '', 'N', 'N', 'C', '1', '0', 'system:user:edit', '#', '/system/user', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
 insert into sys_menu values(1761400000000000133, '文件配置管理', 1761400000000000001, 10, 'oss-config/index', 'system/oss/config', '', 'N', 'N', 'C', '1', '0', 'system:ossConfig:list', '#', '/system/oss', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
 
--- springboot-admin监控
-insert into sys_menu values(1761400000000000117, 'Admin监控', 1761400000000000002, 5, 'Admin', 'monitor/admin/index', '', 'N', 'Y', 'C', '0', '0', 'monitor:admin:list', 'dashboard', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, 'Admin监控菜单');
 -- oss菜单
 insert into sys_menu values(1761400000000000118, '文件管理', 1761400000000000001, 10, 'oss', 'system/oss/index', '', 'N', 'Y', 'C', '0', '0', 'system:oss:list', 'upload', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '文件管理菜单');
--- snail-job server控制台
-insert into sys_menu values(1761400000000000120, '任务调度中心', 1761400000000000002, 5, 'snailjob', 'monitor/snailjob/index', '', 'N', 'Y', 'C', '0', '0', 'monitor:snailjob:list', 'job', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, 'snailjob控制台菜单');
--- snail-ai server控制台
-insert into sys_menu values(1761400000000000121, 'AI控制台', 1761400000000000002, 7, 'snailai', 'monitor/snailai/index', '', 'N', 'Y', 'C', '0', '0', 'monitor:snailai:list', 'checkbox', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, 'AI控制台菜单');
-
 -- 三级菜单
 insert into sys_menu values(1761400000000000500, '操作日志', 1761400000000000108, 1, 'operlog', 'monitor/operlog/index', '', 'N', 'Y', 'C', '0', '0', 'monitor:operlog:list', 'form', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '操作日志菜单');
 insert into sys_menu values(1761400000000000501, '登录日志', 1761400000000000108, 2, 'logininfo', 'monitor/logininfo/index', '', 'N', 'Y', 'C', '0', '0', 'monitor:logininfo:list', 'logininfo', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '登录日志菜单');
@@ -441,13 +363,6 @@ insert into sys_menu values(1761400000000001050, '账户解锁', 176140000000000
 insert into sys_menu values(1761400000000001046, '在线查询', 1761400000000000109, 1, '#', '', '', 'N', 'Y', 'F', '0', '0', 'monitor:online:query', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
 insert into sys_menu values(1761400000000001047, '批量强退', 1761400000000000109, 2, '#', '', '', 'N', 'Y', 'F', '0', '0', 'monitor:online:batchLogout', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
 insert into sys_menu values(1761400000000001048, '单条强退', 1761400000000000109, 3, '#', '', '', 'N', 'Y', 'F', '0', '0', 'monitor:online:forceLogout', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
--- 代码生成按钮
-insert into sys_menu values(1761400000000001055, '生成查询', 1761400000000000115, 1, '#', '', '', 'N', 'Y', 'F', '0', '0', 'tool:gen:query', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001056, '生成修改', 1761400000000000115, 2, '#', '', '', 'N', 'Y', 'F', '0', '0', 'tool:gen:edit', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001057, '生成删除', 1761400000000000115, 3, '#', '', '', 'N', 'Y', 'F', '0', '0', 'tool:gen:remove', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001058, '导入代码', 1761400000000000115, 2, '#', '', '', 'N', 'Y', 'F', '0', '0', 'tool:gen:import', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001059, '预览代码', 1761400000000000115, 4, '#', '', '', 'N', 'Y', 'F', '0', '0', 'tool:gen:preview', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001060, '生成代码', 1761400000000000115, 5, '#', '', '', 'N', 'Y', 'F', '0', '0', 'tool:gen:code', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
 -- oss相关按钮
 insert into sys_menu values(1761400000000001600, '文件查询', 1761400000000000118, 1, '#', '', '', 'N', 'Y', 'F', '0', '0', 'system:oss:query', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
 insert into sys_menu values(1761400000000001601, '文件上传', 1761400000000000118, 2, '#', '', '', 'N', 'Y', 'F', '0', '0', 'system:oss:upload', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
@@ -463,21 +378,6 @@ insert into sys_menu values(1761400000000001062, '客户端管理新增', 176140
 insert into sys_menu values(1761400000000001063, '客户端管理修改', 1761400000000000123, 3, '#', '', '', 'N', 'Y', 'F', '0', '0', 'system:client:edit', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
 insert into sys_menu values(1761400000000001064, '客户端管理删除', 1761400000000000123, 4, '#', '', '', 'N', 'Y', 'F', '0', '0', 'system:client:remove', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
 insert into sys_menu values(1761400000000001065, '客户端管理导出', 1761400000000000123, 5, '#', '', '', 'N', 'Y', 'F', '0', '0', 'system:client:export', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
--- 测试菜单
-insert into sys_menu values(1761400000000001500, '测试单表', 1761400000000000005, 1, 'demo', 'demo/demo/index', '', 'N', 'Y', 'C', '0', '0', 'demo:demo:list', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '测试单表菜单');
-insert into sys_menu values(1761400000000001501, '测试单表查询', 1761400000000001500, 1, '#', '', '', 'N', 'Y', 'F', '0', '0', 'demo:demo:query', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001502, '测试单表新增', 1761400000000001500, 2, '#', '', '', 'N', 'Y', 'F', '0', '0', 'demo:demo:add', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001503, '测试单表修改', 1761400000000001500, 3, '#', '', '', 'N', 'Y', 'F', '0', '0', 'demo:demo:edit', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001504, '测试单表删除', 1761400000000001500, 4, '#', '', '', 'N', 'Y', 'F', '0', '0', 'demo:demo:remove', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001505, '测试单表导出', 1761400000000001500, 5, '#', '', '', 'N', 'Y', 'F', '0', '0', 'demo:demo:export', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001506, '测试树表', 1761400000000000005, 1, 'tree', 'demo/tree/index', '', 'N', 'Y', 'C', '0', '0', 'demo:tree:list', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '测试树表菜单');
-insert into sys_menu values(1761400000000001507, '测试树表查询', 1761400000000001506, 1, '#', '', '', 'N', 'Y', 'F', '0', '0', 'demo:tree:query', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001508, '测试树表新增', 1761400000000001506, 2, '#', '', '', 'N', 'Y', 'F', '0', '0', 'demo:tree:add', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001509, '测试树表修改', 1761400000000001506, 3, '#', '', '', 'N', 'Y', 'F', '0', '0', 'demo:tree:edit', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001510, '测试树表删除', 1761400000000001506, 4, '#', '', '', 'N', 'Y', 'F', '0', '0', 'demo:tree:remove', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-insert into sys_menu values(1761400000000001511, '测试树表导出', 1761400000000001506, 5, '#', '', '', 'N', 'Y', 'F', '0', '0', 'demo:tree:export', '#', '', '', 1761000000000000103, 1761100000000000001, sysdate, null, null, '');
-
-
 -- ----------------------------
 -- 6、用户和角色关联表  用户N-1角色
 -- ----------------------------
@@ -519,7 +419,6 @@ comment on column sys_role_menu.menu_id      is '菜单ID';
 -- 初始化-角色和菜单关联表数据
 -- ----------------------------
 insert into sys_role_menu values (1761300000000000003, 1761400000000000001);
-insert into sys_role_menu values (1761300000000000003, 1761400000000000005);
 insert into sys_role_menu values (1761300000000000003, 1761400000000000100);
 insert into sys_role_menu values (1761300000000000003, 1761400000000000101);
 insert into sys_role_menu values (1761300000000000003, 1761400000000000102);
@@ -587,18 +486,6 @@ insert into sys_role_menu values (1761300000000000003, 1761400000000001062);
 insert into sys_role_menu values (1761300000000000003, 1761400000000001063);
 insert into sys_role_menu values (1761300000000000003, 1761400000000001064);
 insert into sys_role_menu values (1761300000000000003, 1761400000000001065);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001500);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001501);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001502);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001503);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001504);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001505);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001506);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001507);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001508);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001509);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001510);
-insert into sys_role_menu values (1761300000000000003, 1761400000000001511);
 insert into sys_role_menu values (1761300000000000003, 1761400000000001600);
 insert into sys_role_menu values (1761300000000000003, 1761400000000001601);
 insert into sys_role_menu values (1761300000000000003, 1761400000000001602);
@@ -607,35 +494,6 @@ insert into sys_role_menu values (1761300000000000003, 1761400000000001620);
 insert into sys_role_menu values (1761300000000000003, 1761400000000001621);
 insert into sys_role_menu values (1761300000000000003, 1761400000000001622);
 insert into sys_role_menu values (1761300000000000003, 1761400000000001623);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011616);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011618);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011619);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011622);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011623);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011629);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011632);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011633);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011638);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011639);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011640);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011641);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011642);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011643);
-insert into sys_role_menu values (1761300000000000003, 1761400000000011701);
-insert into sys_role_menu values (1761300000000000004, 1761400000000000005);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001500);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001501);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001502);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001503);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001504);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001505);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001506);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001507);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001508);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001509);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001510);
-insert into sys_role_menu values (1761300000000000004, 1761400000000001511);
-
 -- ----------------------------
 -- 8、角色和部门关联表  角色1-N部门
 -- ----------------------------
@@ -840,12 +698,9 @@ insert into sys_dict_data values(1761600000000000028, 2, '失败', '1', 'sys_com
 insert into sys_dict_data values(1761600000000000030, 0, '密码认证', 'password', 'sys_grant_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, '密码认证');
 insert into sys_dict_data values(1761600000000000031, 0, '短信认证', 'sms', 'sys_grant_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, '短信认证');
 insert into sys_dict_data values(1761600000000000032, 0, '邮件认证', 'email', 'sys_grant_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, '邮件认证');
-insert into sys_dict_data values(1761600000000000033, 0, '小程序认证', 'xcx', 'sys_grant_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, '小程序认证');
-insert into sys_dict_data values(1761600000000000034, 0, '三方登录认证', 'social', 'sys_grant_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, '三方登录认证');
 insert into sys_dict_data values(1761600000000000035, 0, 'PC', 'pc', 'sys_device_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, 'PC');
 insert into sys_dict_data values(1761600000000000036, 0, '安卓', 'android', 'sys_device_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, '安卓');
 insert into sys_dict_data values(1761600000000000037, 0, 'iOS', 'ios', 'sys_device_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, 'iOS');
-insert into sys_dict_data values(1761600000000000038, 0, '小程序', 'xcx', 'sys_device_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, '小程序');
 
 
 -- ----------------------------
@@ -880,7 +735,6 @@ comment on column sys_config.update_time   is '更新时间';
 comment on column sys_config.remark        is '备注';
 
 insert into sys_config values(1761700000000000001, '用户管理-账号初始密码', 'sys.user.initPassword', '123456', 'Y', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, '初始化密码 123456');
-insert into sys_config values(1761700000000000002, '账号自助-是否开启用户注册功能', 'sys.account.registerUser', 'false', 'Y', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, '是否开启注册用户功能（true开启，false关闭）');
 insert into sys_config values(1761700000000000003, 'OSS预览列表资源开关', 'sys.oss.previewListResource', 'true', 'Y', 1761000000000000103, 1761100000000000001, sysdate, NULL, null, 'true:开启, false:关闭');
 
 
@@ -1244,101 +1098,8 @@ comment on column sys_client.create_time            is '创建时间';
 comment on column sys_client.update_by              is '更新者';
 comment on column sys_client.update_time            is '更新时间';
 
-insert into sys_client values (1762000000000000001, 'e5cd7e4891bf95d1d19206ce24a7b32e', 'pc', 'pc123', 'password,social', 'pc', null, null, 1800, 604800, 0, 0, 1761000000000000103, 1761100000000000001, sysdate, 1761100000000000001, sysdate);
-insert into sys_client values (1762000000000000002, '428a8310cd442757ae699df5d894f051', 'app', 'app123', 'password,sms,social', 'android', '/app/**', null, 1800, 604800, 0, 0, 1761000000000000103, 1761100000000000001, sysdate, 1761100000000000001, sysdate);
-
-create table test_demo (
-    id          number(20)      not null,
-    dept_id     number(20)      default null,
-    user_id     number(20)      default null,
-    order_num   number(10)      default 0,
-    test_key    varchar2(255)   default null,
-    value       varchar2(255)   default null,
-    version     number(10)      default 0,
-    create_dept number(20)      default null,
-    create_time date,
-    create_by   number(20)      default null,
-    update_time date,
-    update_by   number(20)      default null,
-    del_flag    number(2)       default 0
-);
-
-alter table test_demo add constraint pk_test_demo primary key (id);
-
-comment on table  test_demo              is '测试单表';
-comment on column test_demo.id           is '主键';
-comment on column test_demo.dept_id      is '部门id';
-comment on column test_demo.user_id      is '用户id';
-comment on column test_demo.order_num    is '排序号';
-comment on column test_demo.test_key     is 'key键';
-comment on column test_demo.value        is '值';
-comment on column test_demo.version      is '版本';
-comment on column test_demo.create_dept  is '创建部门';
-comment on column test_demo.create_time  is '创建时间';
-comment on column test_demo.create_by    is '创建人';
-comment on column test_demo.update_time  is '更新时间';
-comment on column test_demo.update_by    is '更新人';
-comment on column test_demo.del_flag     is '删除标志';
-
-create table test_tree (
-    id          number(20)      not null,
-    parent_id   number(20)      default 0,
-    dept_id     number(20)      default null,
-    user_id     number(20)      default null,
-    tree_name   varchar2(255)   default null,
-    version     number(10)      default 0,
-    create_dept number(20)      default null,
-    create_time date,
-    create_by   number(20)      default null,
-    update_time date,
-    update_by   number(20)      default null,
-    del_flag    number(2)       default 0
-);
-
-alter table test_tree add constraint pk_test_tree primary key (id);
-
-comment on table  test_tree              is '测试树表';
-comment on column test_tree.id           is '主键';
-comment on column test_tree.parent_id    is '父id';
-comment on column test_tree.dept_id      is '部门id';
-comment on column test_tree.user_id      is '用户id';
-comment on column test_tree.tree_name    is '值';
-comment on column test_tree.version      is '版本';
-comment on column test_tree.create_dept  is '创建部门';
-comment on column test_tree.create_time  is '创建时间';
-comment on column test_tree.create_by    is '创建人';
-comment on column test_tree.update_time  is '更新时间';
-comment on column test_tree.update_by    is '更新人';
-comment on column test_tree.del_flag     is '删除标志';
-
-insert into test_demo values (1762100000000000001, 1761000000000000102, 1761100000000000004, 1, '测试数据权限', '测试', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000002, 1761000000000000102, 1761100000000000003, 2, '子节点1', '111', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000003, 1761000000000000102, 1761100000000000003, 3, '子节点2', '222', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000004, 1761000000000000108, 1761100000000000004, 4, '测试数据', 'demo', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000005, 1761000000000000108, 1761100000000000003, 13, '子节点11', '1111', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000006, 1761000000000000108, 1761100000000000003, 12, '子节点22', '2222', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000007, 1761000000000000108, 1761100000000000003, 11, '子节点33', '3333', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000008, 1761000000000000108, 1761100000000000003, 10, '子节点44', '4444', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000009, 1761000000000000108, 1761100000000000003, 9, '子节点55', '5555', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000010, 1761000000000000108, 1761100000000000003, 8, '子节点66', '6666', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000011, 1761000000000000108, 1761100000000000003, 7, '子节点77', '7777', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000012, 1761000000000000108, 1761100000000000003, 6, '子节点88', '8888', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_demo values (1762100000000000013, 1761000000000000108, 1761100000000000003, 5, '子节点99', '9999', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-
-insert into test_tree values (1762200000000000001, NULL, 1761000000000000102, 1761100000000000004, '测试数据权限', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000002, 1762200000000000001, 1761000000000000102, 1761100000000000003, '子节点1', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000003, 1762200000000000002, 1761000000000000102, 1761100000000000003, '子节点2', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000004, NULL, 1761000000000000108, 1761100000000000004, '测试树1', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000005, 1762200000000000004, 1761000000000000108, 1761100000000000003, '子节点11', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000006, 1762200000000000004, 1761000000000000108, 1761100000000000003, '子节点22', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000007, 1762200000000000004, 1761000000000000108, 1761100000000000003, '子节点33', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000008, 1762200000000000005, 1761000000000000108, 1761100000000000003, '子节点44', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000009, 1762200000000000006, 1761000000000000108, 1761100000000000003, '子节点55', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000010, 1762200000000000007, 1761000000000000108, 1761100000000000003, '子节点66', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000011, 1762200000000000007, 1761000000000000108, 1761100000000000003, '子节点77', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000012, 1762200000000000010, 1761000000000000108, 1761100000000000003, '子节点88', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-insert into test_tree values (1762200000000000013, 1762200000000000010, 1761000000000000108, 1761100000000000003, '子节点99', 0, 1761000000000000103, sysdate, 1761100000000000001, null, NULL, 0);
-
+insert into sys_client values (1762000000000000001, 'e5cd7e4891bf95d1d19206ce24a7b32e', 'pc', 'pc123', 'password', 'pc', null, null, 1800, 604800, 0, 0, 1761000000000000103, 1761100000000000001, sysdate, 1761100000000000001, sysdate);
+insert into sys_client values (1762000000000000002, '428a8310cd442757ae699df5d894f051', 'app', 'app123', 'password', 'android', '/app/**', null, 1800, 604800, 0, 0, 1761000000000000103, 1761100000000000001, sysdate, 1761100000000000001, sysdate);
 
 -- ----------------------------
 -- 钩子 ，用于session连接之后 自动设置默认的date类型格式化 简化时间查询

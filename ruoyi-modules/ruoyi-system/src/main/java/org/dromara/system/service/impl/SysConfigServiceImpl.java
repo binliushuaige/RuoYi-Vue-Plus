@@ -1,6 +1,5 @@
 package org.dromara.system.service.impl;
 
-import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Dict;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -79,16 +78,6 @@ public class SysConfigServiceImpl implements ISysConfigService, ConfigService {
     public String selectConfigByKey(String configKey) {
         SysConfig retConfig = configMapper.lambda().eq(SysConfig::getConfigKey, configKey).one();
         return ObjectUtils.notNullGetter(retConfig, SysConfig::getConfigValue, StringUtils.EMPTY);
-    }
-
-    /**
-     * 获取注册开关
-     *
-     * @return true开启，false关闭
-     */
-    @Override
-    public boolean selectRegisterEnabled() {
-        return Convert.toBool(this.getConfigValue("sys.account.registerUser"));
     }
 
     /**
